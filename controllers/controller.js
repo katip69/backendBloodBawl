@@ -1,24 +1,41 @@
-const model = require('../models/models.js');
+import * as model from '../models/models.js'
+import jwt from 'jsonwebtoken';
 
 
-//esta hay que eliminarlo es debug
-exports.helloWorld = async (req, res) => { 
-    //const user = await model.getUser();
-};
 
-exports.login = async (req,res) => {
-    
+
+export const login = async (req,res) => {
    try {
         const user = await model.getUser(req.body.username,req.body.password);
-        res.status(200).json({
+        const token = jwt.sign({user: user[0].username, rol: user[0].rol},'secret',{expiresIn:'1h'})
+        res.status(200)
+        .cookie('access_token',token,{
+            httpOnly:true
+        })
+        .send({
             username:user[0].username,
             rol:user[0].rol
         });
     } catch (error) {
         res.status(401).json({ error: 'Error al consultar la base de datos' });
-    }
-    
-   
-
+    }    
 }
 
+export const currentUser = async (req,res) =>{
+    const token = req.cookies.access_token;
+    if(token){
+        try{
+            const decoded = jwt.verify(token, 'secret');
+            res.json({ 
+                username: decoded.user,
+                rol: decoded.rol
+            }); // o buscar en DB
+        }catch (error){
+            res.status(403).json({ error: 'Debe volver a iniciar sesión' });
+        }
+    }
+}
+
+export const logout = async (req,res) => {
+    res.clearCookie('access_token').send({message:'Se ha cerrado sesion'})
+}
