@@ -1,4 +1,4 @@
-import * as model from '../models/models.js'
+import * as userModel from '../models/userModel.js'
 import jwt from 'jsonwebtoken';
 
 
@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken';
 
 export const login = async (req,res) => {
    try {
-        const user = await model.getUser(req.body.username,req.body.password);
+        const user = await userModel.getUser(req.body.username,req.body.password);
         const token = jwt.sign({user: user[0].username, rol: user[0].rol},'secret',{expiresIn:'1h'})
         res.status(200)
         .cookie('access_token',token,{
