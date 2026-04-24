@@ -20,3 +20,10 @@ export const getSkillCategories = async() => {
     );
     return categories.rows;
 }
+
+export const deleteSkill = async(idSkill) => {
+    await db.query(
+        `DELETE FROM skills WHERE id = $1`,
+        [idSkill]
+    );
+};
