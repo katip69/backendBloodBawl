@@ -29,4 +29,14 @@ export const insertSkill = async (req,res) => {
     } catch (error) {
         res.status(401).json({ error: 'Error al insertar el skill' });
     }    
-}  
+}
+
+export const deleteSkill = async (req,res) => {
+    const idSkill = req.body.skillId;
+    try {
+        await skillModel.deleteSkill(idSkill);
+        res.status(200).json({ message: 'Skill eliminado correctamente' });
+    } catch (error) {
+        res.status(401).json({ error: 'Error al eliminar el skill' });
+    }    
+}
