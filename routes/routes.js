@@ -4,6 +4,7 @@ import * as skillController from '../controllers/skillController.js'
 import * as starCoachController from '../controllers/starCoachController.js'
 import * as incentiveController from '../controllers/incentiveController.js'
 import * as starPlayerController from '../controllers/starPlayerController.js'
+import * as rosterController from '../controllers/rosterController.js'
 
 const router = express.Router();
 
@@ -24,6 +25,10 @@ router.delete('/starCoaches/deleteStarCoach',starCoachController.deleteStarCoach
 router.get('/incentives/getIncentives',incentiveController.getIncentives);
 router.post('/incentives/insertIncentive',incentiveController.insertIncentive);
 router.delete('/incentives/deleteIncentive',incentiveController.deleteIncentive);
+
+router.get('/rosters/getRosters',rosterController.getRosters);
+router.post('/rosters/insertRoster',rosterController.insertRoster);
+router.delete('/rosters/deleteRoster',rosterController.deleteRoster);
 
 router.get('/starPlayers/getStarPlayers',starPlayerController.getStarPlayers);
 router.post('/starPlayers/insertStarPlayer',starPlayerController.insertStarPlayer);
