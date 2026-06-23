@@ -6,6 +6,8 @@ import * as incentiveController from '../controllers/incentiveController.js'
 import * as starPlayerController from '../controllers/starPlayerController.js'
 import * as rosterController from '../controllers/rosterController.js'
 import * as teamController from '../controllers/teamsController.js'
+import * as competitionController from '../controllers/competitionController.js'
+import * as matchController from '../controllers/matchesController.js'
 
 const router = express.Router();
 
@@ -43,5 +45,14 @@ router.get('/teams/getTeams',teamController.getTeams);
 router.post('/teams/insertTeam',teamController.insertTeam);
 router.delete('/teams/deleteTeam',teamController.deleteTeam);
 router.get('/teams/getTeam',teamController.getTeam);
+
+router.get('/competitions/getCompetitions',competitionController.getCompetitions);
+router.get('/competitions/getCompetition',competitionController.getCompetition);
+router.post('/competitions/insertCompetition',competitionController.insertCompetition);
+
+router.get('/matches/getMatches',matchController.getMatches);
+router.post('/matches/insertMatch',matchController.insertMatch);
+router.post('/matches/insertMatches',matchController.insertMatches);
+
 
 export default router;
