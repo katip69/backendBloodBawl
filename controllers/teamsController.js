@@ -35,3 +35,12 @@ export const getTeam = async (req,res) => {
         res.status(401).json({ error: 'Error al obtener el equipo' });
     }
 }
+
+export const getParticipantTeams = async (req,res) => {
+    try {
+        const teams = await teamsModel.getParticipantTeams(req.params.competitionId);
+        res.status(200).json(teams);         
+    } catch (error) {
+        res.status(401).json({ error: 'Error al obtener los equipos del participante' });
+    }
+} 

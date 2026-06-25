@@ -26,3 +26,11 @@ export const deleteTeam = async (teamid) => {
     console.log(teamid);
     await db.query('DELETE FROM teams WHERE teamid = $1', [teamid])
 }
+
+export const getParticipantTeams = async(competitionId) => {
+    const teams = await db.query(
+        `SELECT DISTINCT (teams.teamid), teams.teamname FROM teams INNER JOIN matches on teams.teamid = matches.team_id1 OR teams.teamid = matches.team_id2 INNER JOIN users ON teams.userid = users.userid INNER JOIN roster ON teams.race = roster.rosterid WHERE competition_id = $1`,
+        [competitionId]
+    );
+    return teams.rows;
+}
