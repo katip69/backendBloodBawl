@@ -15,8 +15,9 @@ export const insertMatch = async (req,res) => {
     const teamId1 = req.body.teamId1;
     const teamId2 = req.body.teamId2;
     const matchDate = req.body.matchDate;
+    const state = req.body.state;
     try {
-        await competitionModel.insertMatch(competitionId, teamId1, teamId2, matchDate);
+        await competitionModel.insertMatch(competitionId, teamId1, teamId2, matchDate,state);
         res.status(201).json({ message: 'Partido insertado correctamente' });
     } catch (error) {
         res.status(401).json({ error: 'Error al insertar el partido' });
@@ -26,10 +27,9 @@ export const insertMatch = async (req,res) => {
 export const insertMatches = async (req,res) => {
     const matches = req.body.matches;
     const competitionId = req.body.competitionId;
-    console.log('Matches received:', competitionId); 
     try {
         matches.forEach(async (match) => {
-            await competitionModel.insertMatch(competitionId, match.team1, match.team2, match.matchDate);
+            await competitionModel.insertMatch(competitionId, match.team1, match.team2, match.matchDate, match.state);
         });
         res.status(201).json({ message: 'Partidos insertados correctamente' });
     } catch (error) {

@@ -42,15 +42,16 @@ router.post('/starPlayers/insertStarPlayer',starPlayerController.insertStarPlaye
 router.delete('/starPlayers/deleteStarPlayer',starPlayerController.deleteStarPlayer);
 
 router.get('/teams/getTeams',teamController.getTeams);
+router.get('/teams/getTeam',teamController.getTeam);
+router.get('/teams/getParticipantTeams/:competitionId',teamController.getParticipantTeams);
 router.post('/teams/insertTeam',teamController.insertTeam);
 router.delete('/teams/deleteTeam',teamController.deleteTeam);
-router.get('/teams/getTeam',teamController.getTeam);
 
 router.get('/competitions/getCompetitions',competitionController.getCompetitions);
 router.get('/competitions/getCompetition',competitionController.getCompetition);
 router.post('/competitions/insertCompetition',competitionController.insertCompetition);
 
-router.get('/matches/getMatches',matchController.getMatches);
+router.get('/matches/getMatches/:competitionId',matchController.getMatches);
 router.post('/matches/insertMatch',matchController.insertMatch);
 router.post('/matches/insertMatches',matchController.insertMatches);
 
