@@ -51,7 +51,7 @@ export const setMatch = async (req,res) => {
     const match = req.body.match;
     try {
         await matchModel.setMatch(match);
-        res.status(201).json({ message: 'Partido insertado correctamente' });
+        res.status(201).json({ message: 'Partido actualizado correctamente' });
     } catch (error) {
         res.status(401).json({ error: 'Error al actualizar el partido' });
     }      
@@ -61,8 +61,18 @@ export const deleteMatch = async (req,res) => {
     const match_id = req.body.match_id;
     try {
         await matchModel.deleteMatch(match_id);
-        res.status(201).json({ message: 'Partidos eliminado' });
+        res.status(201).json({ message: 'Partido eliminado correctamente' });
     } catch (error){
         res.status(401).json({ message: 'Error al eliminar el partido' });
+    }
+}
+
+export const getRanking = async (req,res) => {
+    const competitionId = req.params.competitionId;
+    try{
+        const ranking = await matchModel.getRanking(competitionId)
+        res.status(200).json(ranking);
+    } catch (error){
+        res.status(401).json({ message: 'Error al cargar el ranking' });
     }
 }
