@@ -53,9 +53,10 @@ router.post('/competitions/insertCompetition',competitionController.insertCompet
 
 router.get('/matches/getMatches/:competitionId',matchController.getMatches);
 router.get('/matches/getFinishedMatches/:competitionId',matchController.getFinishedMatches);
+router.get('/matches/getRanking/:competitionId',matchController.getRanking)
 router.post('/matches/insertMatch',matchController.insertMatch);
 router.post('/matches/insertMatches',matchController.insertMatches);
 router.post('/matches/setMatch',matchController.setMatch);
-router.delete('/matches/deleteMatch',matchController.deleteMatch)
+router.delete('/matches/deleteMatch',matchController.deleteMatch);
 
 export default router;
