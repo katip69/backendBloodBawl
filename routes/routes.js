@@ -8,6 +8,7 @@ import * as rosterController from '../controllers/rosterController.js'
 import * as teamController from '../controllers/teamsController.js'
 import * as competitionController from '../controllers/competitionController.js'
 import * as matchController from '../controllers/matchesController.js'
+import * as newsController from '../controllers/newsController.js'
 
 const router = express.Router();
 
@@ -58,5 +59,9 @@ router.post('/matches/insertMatch',matchController.insertMatch);
 router.post('/matches/insertMatches',matchController.insertMatches);
 router.post('/matches/setMatch',matchController.setMatch);
 router.delete('/matches/deleteMatch',matchController.deleteMatch);
+
+router.get('/news/getNews',newsController.getNews);
+router.post('/news/insertNews',newsController.insertNews);
+router.delete('/news/deleteNews',newsController.deleteNews);
 
 export default router;
